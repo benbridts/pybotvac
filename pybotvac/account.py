@@ -211,9 +211,10 @@ class Account:
                 # Robot does not support home_cleaning service
                 _LOGGER.warning("Your robot %s is unsupported.", robot["name"])
                 continue
-            except NeatoRobotException:
+            except NeatoRobotException as e:
                 # The state of the robot could not be received
                 _LOGGER.warning("Your robot %s is offline.", robot["name"])
+                _LOGGER.warning("exception: %s", e)
                 continue
 
         self.refresh_persistent_maps()
